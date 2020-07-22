@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet id="2020-06-24-16-10-00" author="YuryGovorushkin">
+        <createTable tableName="genre">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="genre_pkey"/>
+            </column>
+            <column name="genre_name" type="varchar(50)"/>
+        </createTable>
+
+        <createTable tableName="composition">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="composition_pkey"/>
+            </column>
+            <column name="composition_name" type="varchar(200)"/>
+            <column name="description" type="text"/>
+            <column name="genre_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="composition_genre_fkey"
+                             referencedTableName="genre"
+                             referencedColumnNames="id"/>
+            </column>
+            <column name="user_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="composition_user_fkey"
+                             referencedTableName="course_user"
+                             referencedColumnNames="id"/>
+            </column>
+            <column name="created_at" type="timestamp"/>
+            <column name="updated_at" type="timestamp"/>
+        </createTable>
+
+
+        <createTable tableName="chapter">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="chapter_pkey"/>
+            </column>
+            <column name="chapter_name" type="varchar(200)"/>
+            <column name="text" type="text"/>
+            <column name="composition_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="chapter_composition_fkey"
+                             referencedTableName="composition"
+                             referencedColumnNames="id"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="like_chapter">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="like_chapter_pkey"/>
+            </column>
+            <column name="user_id" type="bigint"/>
+            <column name="chapter_id" type="bigint"/>
+        </createTable>
+
+        <createTable tableName="comment">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="comment_pkey"/>
+            </column>
+            <column name="text" type="varchar(500)"/>
+            <column name="full_name" type="varchar(500)"/>
+            <column name="author_url" type="varchar(10)"/>
+            <column name="avatar_url" type="varchar(10)"/>
+            <column name="created_at" type="timestamp"/>
+            <column name="composition_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="comment_composition_fkey"
+                             referencedTableName="composition"
+                             referencedColumnNames="id"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="tag">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="tag_pkey"/>
+            </column>
+            <column name="tag_name" type="varchar(200)"/>
+        </createTable>
+
+        <createTable tableName="composition_tag">
+            <column name="composition_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="composition_fkey"
+                             referencedTableName="composition"
+                             referencedColumnNames="id"/>
+            </column>
+            <column name="tag_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="tag_fkey"
+                             referencedTableName="tag"
+                             referencedColumnNames="id"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="rating_composition">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="rating_composition_pkey"/>
+            </column>
+            <column name="user_id" type="bigint"/>
+            <column name="composition_id" type="bigint"/>
+            <column name="rating" type="bigint"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2020-07-20-11-42-00" author="YuryGovorushkin">
+        <addColumn tableName="composition">
+            <column name="url_image" type="varchar(250)"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="2020-07-20-12-02-00" author="YuryGovorushkin">
+        <addColumn tableName="composition">
+            <column name="alt_image" type="varchar(250)"/>
+        </addColumn>
+    </changeSet>
+
+</databaseChangeLog>
