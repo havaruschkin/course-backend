@@ -80,7 +80,7 @@ public class AccountResourceController {
     }
 
     @PostMapping("/users/updateUser")
-    public void addAuthority(@RequestBody UserDTO userDTO) {
+    public void updateUser(@RequestBody UserDTO userDTO) {
         userService.updateUser(userDTO);
     }
 

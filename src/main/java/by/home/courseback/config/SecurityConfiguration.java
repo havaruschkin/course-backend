@@ -66,6 +66,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/tag").permitAll()
                 .antMatchers("/api/rating/**").permitAll()
                 .antMatchers("/gs-guide-websocket/**").permitAll()
+                .antMatchers("/api/users/user/**").authenticated()
                 .antMatchers("/api/users/**").hasAuthority(AuthoritiesConstants.ADMIN)
                 .antMatchers("/**").authenticated()
                 .and()
