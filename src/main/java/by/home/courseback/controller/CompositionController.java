@@ -2,6 +2,7 @@ package by.home.courseback.controller;
 
 import by.home.courseback.exeption.CreatedEntityIdException;
 import by.home.courseback.exeption.UpdatedEntityIdException;
+import by.home.courseback.repository.specification.SearchCriteria;
 import by.home.courseback.service.CompositionService;
 import by.home.courseback.service.dto.CompositionDTO;
 import by.home.courseback.service.mapper.CompositionMapper;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -61,5 +63,13 @@ public class CompositionController {
     @DeleteMapping("/{id}")
     public void deleteComposition(@PathVariable Long id) {
         compositionService.deleteComposition(id);
+    }
+
+    @GetMapping("/search")
+    public List<CompositionDTO> search(@RequestParam(value = "search") String search) {
+        String[] values = search.split(" ");
+        String join = String.join("%", values);
+        String filter = "%" + join + "%";
+        return compositionMapper.toCompositionDTOs(compositionService.search(new SearchCriteria(filter)));
     }
 }
