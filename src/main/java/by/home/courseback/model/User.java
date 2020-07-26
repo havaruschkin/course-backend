@@ -65,4 +65,5 @@ public class User {
     private List<Composition> compositions;
 
     private String language;
+    private String theme;
 }

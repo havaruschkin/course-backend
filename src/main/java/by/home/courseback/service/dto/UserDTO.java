@@ -30,4 +30,5 @@ public class UserDTO {
     private Set<String> authorities;
     private Status status;
     private String language;
+    private String theme;
 }
