@@ -29,6 +29,7 @@ public class UserMapperImpl implements UserMapper {
         userDTO.setActivated(user.isActivated());
         userDTO.setCreatedTs(user.getCreatedAt());
         userDTO.setStatus(user.getStatus());
+        userDTO.setLanguage(user.getLanguage());
         userDTO.setAuthorities(user.getAuthorities()
                 .stream()
                 .map(Authority::getName)
@@ -46,6 +47,7 @@ public class UserMapperImpl implements UserMapper {
             user.setEmail(userDTO.getEmail());
             user.setActivated(userDTO.isActivated());
             user.setStatus(userDTO.getStatus());
+            user.setLanguage(userDTO.getLanguage());
             Set<Authority> authorities = this.authoritiesFromStrings(userDTO.getAuthorities());
             user.setAuthorities(authorities);
             return user;

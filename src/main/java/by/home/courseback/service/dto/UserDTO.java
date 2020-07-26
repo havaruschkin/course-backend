@@ -29,4 +29,5 @@ public class UserDTO {
     private boolean activated = false;
     private Set<String> authorities;
     private Status status;
+    private String language;
 }

@@ -72,6 +72,7 @@ public class UserService {
     public void updateUser(UserDTO userDTO) {
         userRepository.findById(userDTO.getId())
                 .map(user -> {
+                    user.setLanguage(userDTO.getLanguage());
                     user.setEmail(userDTO.getEmail());
                     user.setAuthorities(authorityRepository.findByNameIn(userDTO.getAuthorities()));
                     return user;

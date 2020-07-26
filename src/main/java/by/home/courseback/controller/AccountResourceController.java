@@ -5,7 +5,6 @@ import by.home.courseback.exeption.InvalidPasswordException;
 import by.home.courseback.model.User;
 import by.home.courseback.service.MailService;
 import by.home.courseback.service.UserService;
-import by.home.courseback.service.dto.ChapterDTO;
 import by.home.courseback.service.dto.UserDTO;
 import by.home.courseback.service.mapper.UserMapper;
 import by.home.courseback.service.vm.UserVM;

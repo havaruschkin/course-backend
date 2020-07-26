@@ -6,7 +6,6 @@
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
 
     <changeSet id="2020-06-20-18-20-00" author="YuryGovorushkin">
-
         <createTable tableName="course_user">
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" primaryKeyName="course_user_pkey"/>
@@ -47,7 +46,12 @@
                              referencedColumnNames="id"/>
             </column>
         </createTable>
+    </changeSet>
 
+    <changeSet id="2020-07-24-16-45-00" author="YuryGovorushkin">
+        <addColumn tableName="course_user">
+            <column name="language" type="varchar(10)" defaultValue="en"/>
+        </addColumn>
     </changeSet>
 
 </databaseChangeLog>

@@ -61,12 +61,8 @@ public class User {
             inverseJoinColumns = {@JoinColumn(name = "authority_id", referencedColumnName = "id")})
     private Set<Authority> authorities;
 
-//    @OneToMany(cascade = CascadeType.ALL)
-//    private List<LikeChapter> likes;
-
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private List<Composition> compositions;
 
-//    @OneToMany(cascade = CascadeType.ALL)
-//    private List<RatingComposition> ratingCompositions;
+    private String language;
 }

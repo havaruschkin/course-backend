@@ -2,7 +2,6 @@ package by.home.courseback.controller;
 
 import by.home.courseback.exeption.CreatedEntityIdException;
 import by.home.courseback.exeption.UpdatedEntityIdException;
-import by.home.courseback.model.Composition;
 import by.home.courseback.service.CompositionService;
 import by.home.courseback.service.dto.CompositionDTO;
 import by.home.courseback.service.mapper.CompositionMapper;
