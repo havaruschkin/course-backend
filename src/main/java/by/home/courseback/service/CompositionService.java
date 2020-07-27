@@ -2,12 +2,7 @@ package by.home.courseback.service;
 
 import by.home.courseback.model.Composition;
 import by.home.courseback.repository.CompositionRepository;
-import by.home.courseback.repository.specification.CompositionSpecification;
-import by.home.courseback.repository.specification.SearchCriteria;
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -42,11 +37,5 @@ public class CompositionService {
 
     public void deleteComposition(Long idComposition) {
         compositionRepository.deleteById(idComposition);
-    }
-
-    public List<Composition> search(SearchCriteria criteria) {
-        CompositionSpecification specification = new CompositionSpecification(criteria);
-        Set<Composition> filter = new HashSet<>(compositionRepository.findAll(specification));
-        return new ArrayList<>(filter);
     }
 }
