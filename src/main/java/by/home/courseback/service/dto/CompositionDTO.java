@@ -23,6 +23,7 @@ public class CompositionDTO {
     private List<ChapterDTO> chapters;
     private List<CommentDTO> comments;
     private UserDTO user;
+    private Float rating;
 
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
     private LocalDateTime createdAt;

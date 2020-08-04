@@ -3,6 +3,7 @@ package by.home.courseback.service.mapper.impl;
 import by.home.courseback.model.Composition;
 import by.home.courseback.service.CompositionService;
 import by.home.courseback.service.GenreService;
+import by.home.courseback.service.RatingService;
 import by.home.courseback.service.dto.CompositionDTO;
 import by.home.courseback.service.mapper.ChapterMapper;
 import by.home.courseback.service.mapper.CommentMapper;
@@ -25,11 +26,12 @@ public class CompositionMapperImpl implements CompositionMapper {
     private final CommentMapper commentMapper;
     private final UserMapper userMapper;
     private final CompositionService compositionService;
+    private final RatingService ratingService;
 
     public CompositionMapperImpl(GenreService genreService, GenreMapper genreMapper,
                                  ChapterMapper chapterMapper, TagMapper tagMapper,
                                  CommentMapper commentMapper, UserMapper userMapper,
-                                 CompositionService compositionService) {
+                                 CompositionService compositionService, RatingService ratingService) {
         this.genreService = genreService;
         this.genreMapper = genreMapper;
         this.chapterMapper = chapterMapper;
@@ -37,6 +39,7 @@ public class CompositionMapperImpl implements CompositionMapper {
         this.commentMapper = commentMapper;
         this.userMapper = userMapper;
         this.compositionService = compositionService;
+        this.ratingService = ratingService;
     }
 
     @Override
@@ -68,6 +71,7 @@ public class CompositionMapperImpl implements CompositionMapper {
         compositionDTO.setUser(userMapper.toUserDTO(composition.getUser()));
         compositionDTO.setUrlImage(composition.getUrlImage());
         compositionDTO.setAltImage(composition.getAltImage());
+        compositionDTO.setRating(ratingService.getRatingComposition(composition.getId()));
         return compositionDTO;
     }
 
